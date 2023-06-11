@@ -11,7 +11,7 @@
  * Example: const allItems = <Your code>;
  */
 
-// Your code goes here...
+const allItems = document.querySelectorAll('.item');
 
 
 
@@ -22,7 +22,7 @@
  * Example: const sortBtn = <Your code>;
  */
 
-// Your code goes here...
+const sortBtn = document.querySelectorAll('.sortBtn');
 
 
 
@@ -37,7 +37,21 @@
  * Example: sortData('asc') => <a-z order of items in the main container>
  */
 
-// Your code goes here...
+
+function sortData(direction) {
+    const container = document.getElementById('main');
+    const sortedItems = Array.from(allItems).sort((a, b) => {
+      if (direction === 'asc') {
+        return a.id.localeCompare(b.id);
+      } else if (direction === 'desc') {
+        return b.id.localeCompare(a.id);
+      }
+    });
+
+    sortedItems.forEach(item => {
+        container.appendChild(item);
+      });
+    }
 
 
 
@@ -49,6 +63,10 @@
  * * Make the sortData function call, assign the item's dataset sortdir property
  */
 
-// Your code goes here...
+sortBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+      sortData(btn.dataset.sortdir);
+    });
+  });
 
 
